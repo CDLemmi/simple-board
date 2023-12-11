@@ -14,7 +14,7 @@ public class Board extends JPanel{
 
     Type[] types = new Type[49];
 
-    HashMap<Type, BufferedImage> textures = new HashMap<Type, BufferedImage>();
+    HashMap<Type, BufferedImage> textures = new HashMap();
 
     private int selected = 0;
 
