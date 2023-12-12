@@ -14,7 +14,7 @@ public class Board extends JPanel{
 
     Type[] types = new Type[49];
 
-    HashMap<Type, BufferedImage> textures = new HashMap();
+    HashMap<Type, BufferedImage> textures = new HashMap<>();
 
     private int selected = 0;
 
@@ -44,13 +44,13 @@ public class Board extends JPanel{
                 int[] a = new int[] {-7,-1,1,7};
                 for(int j : a) {
                     int k = j + i;
-                    if(k <= 48 && k >= 0) {
-                        if(!(j==1 && k%7 == 0) && !(j==-1 && k%7 == 6))
-                        if(types[k] == Type.EMPTY) types[k] = Type.AVAILABLE;
-
-                    }
+                    boolean isInBoard = k <= 48 && k >= 0;
+                    boolean doesNotWrapRight = !(j==1 && k%7 == 0);
+                    boolean doesNotWrapLeft = !(j==-1 && k%7 == 6);
+                    if(isInBoard && doesNotWrapLeft && doesNotWrapRight
+                            && types[k] == Type.EMPTY )
+                        types[k] = Type.AVAILABLE;
                 }
-
             }
         }
         paintComponent(getGraphics());
